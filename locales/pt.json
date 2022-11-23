@@ -1,0 +1,99 @@
+{
+  "app": {
+    "click": "Clique em mim"
+  },
+  "components": {
+    "calendar": {
+      "months": {
+        "1": "janeiro",
+        "2": "fevereiro",
+        "3": "março",
+        "4": "abril",
+        "5": "maio",
+        "6": "junho",
+        "7": "julho",
+        "8": "agosto",
+        "9": "setembro",
+        "10": "outubro",
+        "11": "novembro",
+        "12": "dezembro"
+      },
+      "shortMonths": {
+        "1": "jan",
+        "2": "fev",
+        "3": "mar",
+        "4": "abr",
+        "5": "mai",
+        "6": "jun",
+        "7": "jul",
+        "8": "ago",
+        "9": "set",
+        "10": "out",
+        "11": "nov",
+        "12": "dez"
+      },
+      "shortDay": {
+        "1": "D",
+        "2": "S",
+        "3": "T",
+        "4": "Q",
+        "5": "Q",
+        "6": "S",
+        "7": "S"
+      }
+    },
+    "header": {
+      "product-menu": {
+        "addon": "addons",
+        "product": "products"
+      }
+    },
+    "file-input": {
+      "clickToUpload": "click to upload",
+      "orDrag": "or drag and drop",
+      "supportInfo": "all files supported | {firstFile} (max. {maxSize}) | {firstFile} or {lastFile} (max. {maxSize})"
+    },
+    "table": {
+      "table-header": {
+        "search": {
+          "placeholder": "search"
+        },
+        "density": {
+          "label": "density",
+          "SMALL": "small",
+          "MEDIUM": "medium",
+          "LARGE": "large"
+        },
+        "headers-control": {
+          "headers": "headers"
+        },
+        "selection": {
+          "selectedItems": "no items selected | {n} selected item | {n} selected items",
+          "actions": {
+            "cancel": "cancel"
+          }
+        }
+      },
+      "table-body": {
+        "blurPlaceholder": "***************",
+        "empty": "oh, sorry. we didn't find any data."
+      },
+      "table-footer": {
+        "rowsPerPage": "rows per page",
+        "of": "of",
+        "rowsOptions": {
+          "all": "all"
+        }
+      }
+    },
+    "dialog": {
+      "actions": {
+        "cancel": "cancel",
+        "confirm": "confirm"
+      }
+    },
+    "action-bar": {
+      "count": "no item selected | {n} item selected | {n} items selected"
+    }
+  }
+}
