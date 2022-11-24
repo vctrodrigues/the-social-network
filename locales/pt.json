@@ -1,6 +1,21 @@
 {
   "app": {
-    "click": "Clique em mim"
+    "login": {
+      "email": "e-mail",
+      "password": "senha",
+      "orSignup": "ou #cadastre-se# agora",
+      "invalidCredentials": "Suas credenciais são inválidas. Tente novamente.",
+      "button": "entrar"
+    },
+    "signup": {
+      "email": "e-mail",
+      "password": "senha",
+      "cpf": "cpf",
+      "name": "nome",
+      "passwordCheck": "repita sua senha",
+      "orLogin": "ou #faça seu login",
+      "button": "cadastrar"
+    }
   },
   "components": {
     "calendar": {

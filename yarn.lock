@@ -267,10 +267,10 @@
     "@babel/helper-validator-identifier" "^7.19.1"
     to-fast-properties "^2.0.0"
 
-"@cleancloud/design-system@^1.1.0":
-  version "1.1.0"
-  resolved "https://pkgs.dev.azure.com/cleancloud/_packaging/cleancloud/npm/registry/@cleancloud/design-system/-/design-system-1.1.0.tgz#525c3d8f4c133f46e2372d6c5ea4d9d00a6b733a"
-  integrity sha1-Ulw9j0wTP0biNy1sXqTZ0Aprczo=
+"@cleancloud/design-system@^1.4.3":
+  version "1.4.3"
+  resolved "https://pkgs.dev.azure.com/cleancloud/_packaging/cleancloud/npm/registry/@cleancloud/design-system/-/design-system-1.4.3.tgz#9d130b16b62899cc8b656e80fe6762a4d7b8d595"
+  integrity sha1-nRMLFrYomcyLZW6A/mdipNe41ZU=
   dependencies:
     "@stitches/core" "^1.2.8"
     "@storybook/preset-scss" "^1.0.3"

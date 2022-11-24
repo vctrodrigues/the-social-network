@@ -1,6 +1,22 @@
 {
   "app": {
-    "click": "Click me :)"
+    "login": {
+      "email": "email",
+      "password": "password",
+      "orSignup": "or #signup# now",
+      "invalidCredentials": "Your credentials are invalid. Try again.",
+      "button": "login"
+    },
+    "signup": {
+      "email": "email",
+      "password": "password",
+      "cpf": "cpf",
+      "name": "name",
+      "passwordCheck": "repeat your password",
+      "orLogin": "or #login instead",
+      "invalidCredentials": "Your credentials are invalid. Try again.",
+      "button": "signup"
+    }
   },
   "components": {
     "calendar": {

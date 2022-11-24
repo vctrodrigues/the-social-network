@@ -3,7 +3,8 @@ import {
   UserProfileResponse,
   UserResponse,
 } from "@/types/user.types";
-import { useUserStore } from "~~/store";
+
+import { useUserStore } from "@/store";
 
 export async function login(user: UserPayload) {
   const successful = await useFetch(`http://localhost:3000/api/auth/login`, {
@@ -19,7 +20,7 @@ export async function login(user: UserPayload) {
       return true;
     })
     .catch(() => {
-      localStorage.clearItem("access_token");
+      localStorage.removeItem("access_token");
 
       return false;
     });
@@ -31,7 +32,12 @@ export async function login(user: UserPayload) {
   return successful;
 }
 
-export function logout() {}
+export function logout() {
+  localStorage.removeItem("access_token");
+
+  const { setUser } = useUserStore();
+  setUser(null);
+}
 
 async function saveProfile() {
   return await useFetch(`http://localhost:3000/api/profile`, {

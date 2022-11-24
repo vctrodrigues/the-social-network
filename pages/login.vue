@@ -1,15 +1,23 @@
 <script lang="ts" setup>
 import { Alert, Button, Textfield } from "@cleancloud/design-system";
+import { useI18n } from "vue-i18n";
 
 definePageMeta({
   middleware: "auth",
+  layout: "default",
 });
 
 const email = ref<string>("");
 const password = ref<string>("");
 const active = ref<boolean>(false);
 
+const { capitalizeFirst } = useCapitalize();
 const { login } = useAuth();
+const { t } = useI18n();
+
+const orSignup = computed(() => {
+  return t("app.login.orSignup").split("#");
+});
 
 async function onLogin() {
   if (await login({ email: email.value, password: password.value })) {
@@ -29,15 +37,25 @@ async function onLogin() {
     />
 
     <form class="app-login-container__form">
-      <Textfield v-model="email" placeholder="E-mail" class="app-mb--nano" />
-      <Textfield v-model="password" placeholder="Senha" class="app-mb--nano" />
-      <Button append-icon="chevron_right" @click.prevent="onLogin"
-        >Entrar</Button
-      >
+      <Textfield
+        v-model="email"
+        :placeholder="capitalizeFirst($t('app.login.email'))"
+        class="app-mb--nano"
+      />
+      <Textfield
+        v-model="password"
+        :placeholder="capitalizeFirst($t('app.login.password'))"
+        class="app-mb--nano"
+      />
+      <Button append-icon="chevron_right" @click.prevent="onLogin">{{
+        capitalizeFirst($t("app.login.button"))
+      }}</Button>
     </form>
 
     <Span class="app-mt--xs" body>
-      ou <NuxtLink to="/signup">cadastre-se</NuxtLink> agora
+      {{ orSignup[0] }}
+      <NuxtLink to="/signup">{{ orSignup[1] }}</NuxtLink>
+      {{ orSignup[2] }}
     </Span>
 
     <Alert
@@ -48,7 +66,7 @@ async function onLogin() {
       error
       mark
     >
-      Suas credenciais são inválidas. Tente novamente.
+      {{ $t("app.login.invalidCredentials") }}
     </Alert>
   </div>
 </template>

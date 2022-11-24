@@ -1,7 +1,7 @@
 <template>
   <main class="app-main">
     <div class="app-alerts-container"></div>
-    <NuxtPage />
+    <NuxtLayout />
   </main>
 </template>
 

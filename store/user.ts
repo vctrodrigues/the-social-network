@@ -8,7 +8,7 @@ export const useUserStore = defineStore(
     const user = ref<User | null>(null);
     const isAuthenticated = ref<boolean>(false);
 
-    function setUser(_user: User) {
+    function setUser(_user: User | null) {
       if (!_user) {
         isAuthenticated.value = false;
         user.value = null;

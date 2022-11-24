@@ -8,6 +8,7 @@ import pt from "@/locales/pt.json";
 export default defineNuxtPlugin(({ vueApp }) => {
   vueApp.use(DesignSystem);
 
+  // required dependency
   const i18n = createI18n({
     legacy: false, // composition API
     globalInjection: true, // inject on vue instance ==> $i18n

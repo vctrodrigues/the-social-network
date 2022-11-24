@@ -1,8 +1,10 @@
 <script lang="ts" setup>
 import { Button, Textfield } from "@cleancloud/design-system";
+import { useI18n } from "vue-i18n";
 
 definePageMeta({
   middleware: "auth",
+  layout: "default",
 });
 
 const name = ref<string>("");
@@ -10,6 +12,13 @@ const cpf = ref<string>("");
 const email = ref<string>("");
 const password = ref<string>("");
 const passwordCheck = ref<string>("");
+
+const { capitalizeFirst } = useCapitalize();
+const { t } = useI18n();
+
+const orLogin = computed(() => {
+  return t("app.signup.orLogin").split("#");
+});
 </script>
 
 <template>
@@ -21,20 +30,38 @@ const passwordCheck = ref<string>("");
     />
 
     <form class="app-signup-container__form">
-      <Textfield v-model="name" placeholder="Nome" class="app-mb--nano" />
-      <Textfield v-model="cpf" placeholder="CPF" class="app-mb--nano" />
-      <Textfield v-model="email" placeholder="E-mail" class="app-mb--nano" />
-      <Textfield v-model="password" placeholder="Senha" class="app-mb--nano" />
       <Textfield
-        v-model="passwordCheck"
-        placeholder="Repita sua senha"
+        v-model="name"
+        :placeholder="capitalizeFirst($t('app.signup.name'))"
         class="app-mb--nano"
       />
-      <Button append-icon="chevron_right">Cadastrar</Button>
+      <Textfield
+        v-model="cpf"
+        :placeholder="capitalizeFirst($t('app.signup.cpf'))"
+        class="app-mb--nano"
+      />
+      <Textfield
+        v-model="email"
+        :placeholder="capitalizeFirst($t('app.signup.email'))"
+        class="app-mb--nano"
+      />
+      <Textfield
+        v-model="password"
+        :placeholder="capitalizeFirst($t('app.signup.password'))"
+        class="app-mb--nano"
+      />
+      <Textfield
+        v-model="passwordCheck"
+        :placeholder="capitalizeFirst($t('app.signup.passwordCheck'))"
+        class="app-mb--nano"
+      />
+      <Button append-icon="chevron_right">{{
+        capitalizeFirst($t("app.signup.button"))
+      }}</Button>
     </form>
 
     <Span class="app-mt--xs" body>
-      ou <NuxtLink to="/login">faça seu login</NuxtLink>
+      {{ orLogin[0] }} <NuxtLink to="/login">{{ orLogin[1] }}</NuxtLink>
     </Span>
   </div>
 </template>
