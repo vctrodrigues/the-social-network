@@ -3,7 +3,7 @@ import { Dropdown } from "@cleancloud/design-system";
 </script>
 
 <template>
-  <div class="app-default-layout">
+  <div class="app-external-layout">
     <NuxtPage />
     <Dropdown
       v-model="$i18n.locale"
@@ -22,10 +22,12 @@ import { Dropdown } from "@cleancloud/design-system";
 </template>
 
 <style lang="scss" scoped>
-.app-default-layout {
+.app-external-layout {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  min-height: 100vh;
 }
 .app-locale-dropdown {
   position: absolute;

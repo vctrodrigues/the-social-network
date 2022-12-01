@@ -5,6 +5,7 @@ export type User = {
   cpf: string;
   email: string;
   picture?: string;
+  bio?: string;
   role: "ADMIN" | "VERIFIED" | "USER";
 };
 

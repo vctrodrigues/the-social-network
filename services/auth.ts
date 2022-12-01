@@ -47,7 +47,7 @@ async function saveProfile() {
     },
   })
     .then(({ data: { value } }) => {
-      const { id, name, username, cpf, email, picture, role } =
+      const { id, name, username, cpf, bio, email, picture, role } =
         value as UserProfileResponse;
 
       const { setUser } = useUserStore();
@@ -59,6 +59,7 @@ async function saveProfile() {
         cpf,
         email,
         picture,
+        bio,
         role,
       });
 

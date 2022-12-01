@@ -4,7 +4,7 @@ import { useI18n } from "vue-i18n";
 
 definePageMeta({
   middleware: "auth",
-  layout: "default",
+  layout: "external",
 });
 
 const email = ref<string>("");

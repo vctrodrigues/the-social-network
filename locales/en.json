@@ -16,6 +16,17 @@
       "orLogin": "or #login instead",
       "invalidCredentials": "Your credentials are invalid. Try again.",
       "button": "signup"
+    },
+    "header": {
+      "search": "search everything..."
+    },
+    "profile-summary": {
+      "following": "following",
+      "followers": "followers",
+      "my-profile": "my profile"
+    },
+    "profile-suggest": {
+      "youMightKnow": "you might know..."
     }
   },
   "components": {

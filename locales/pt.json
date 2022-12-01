@@ -15,6 +15,17 @@
       "passwordCheck": "repita sua senha",
       "orLogin": "ou #faça seu login",
       "button": "cadastrar"
+    },
+    "header": {
+      "search": "pesquise sobre tudo..."
+    },
+    "profile-summary": {
+      "following": "seguindo",
+      "followers": "seguidores",
+      "my-profile": "meu perfil"
+    },
+    "profile-suggest": {
+      "youMightKnow": "você deve conhecer..."
     }
   },
   "components": {
