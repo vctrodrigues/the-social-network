@@ -25,7 +25,7 @@ const { capitalizeFirst } = useCapitalize();
       />
       <Avatar image="/img/avatar.png" large />
       <H3 class="app-mt--micro" semibold>{{ user?.name }}</H3>
-      <Label>{{ user?.username }}</Label>
+      <Label>@{{ user?.username }}</Label>
       <Span class="app-mt--xs" body>{{ user?.bio }}</Span>
     </div>
     <div

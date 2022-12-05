@@ -6,16 +6,26 @@ definePageMeta({
 </script>
 
 <template>
-  <div class="app-home app-px--xxl app-py--xxs">
+  <div class="app-home app-px--xxl app-py--xxs app-gap--xxs">
     <Sidebar>
       <ProfileSummary />
       <ProfileSuggest />
     </Sidebar>
+    <div class="app-home__feed">
+      <PostCreator />
+    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .app-home {
   display: flex;
+
+  .app-home__feed {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+  }
 }
 </style>

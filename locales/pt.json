@@ -26,6 +26,14 @@
     },
     "profile-suggest": {
       "youMightKnow": "você deve conhecer..."
+    },
+    "profile-link": {
+      "follow": "seguindo"
+    },
+    "post-creator": {
+      "placeholder": "O que está acontecendo?",
+      "addPhoto": "adicionar foto",
+      "post": "postar"
     }
   },
   "components": {
