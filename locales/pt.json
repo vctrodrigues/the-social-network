@@ -34,6 +34,9 @@
       "placeholder": "O que está acontecendo?",
       "addPhoto": "adicionar foto",
       "post": "postar"
+    },
+    "post-card": {
+      "writeComment": "escreva um comentário"
     }
   },
   "components": {

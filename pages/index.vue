@@ -11,8 +11,9 @@ definePageMeta({
       <ProfileSummary />
       <ProfileSuggest />
     </Sidebar>
-    <div class="app-home__feed">
+    <div class="app-home__feed app-gap--xxxs">
       <PostCreator />
+      <Feed />
     </div>
   </div>
 </template>

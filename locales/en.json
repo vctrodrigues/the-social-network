@@ -32,9 +32,12 @@
       "follow": "follow"
     },
     "post-creator": {
-      "placeholder": "What's happening?",
+      "placeholder": "what's happening?",
       "addPhoto": "add photo",
       "post": "post"
+    },
+    "post-card": {
+      "writeComment": "write a comment"
     }
   },
   "components": {
