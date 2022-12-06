@@ -1,17 +1,39 @@
 <script lang="ts" setup>
 import { Avatar, Button, Textfield } from "@cleancloud/design-system";
+import { useUserStore } from "@/store";
 
-import { Post } from "@/types/post.types";
+import { Post, PostResponse } from "@/types/post.types";
+import { APIMessage } from "@/types/api.types";
 
 const props = defineProps<{
   post: Post;
 }>();
 
 const { capitalizeFirst } = useCapitalize();
+const { user } = useUserStore();
 
 const commentMessage = ref<string>("");
 
-function onLike() {}
+const userLiked = computed(() => {
+  return props.post.likes.some((like) => like.user.id === user?.id);
+});
+
+const emit = defineEmits<{
+  (e: "react:post", v: Post): void;
+}>();
+
+async function onLike() {
+  const { likePost, unlikePost, transformPost } = usePost();
+
+  if (userLiked.value) {
+    const { payload } = (await unlikePost(props.post.id)) as APIMessage;
+    emit("react:post", transformPost(payload as PostResponse));
+    return;
+  }
+
+  const { payload } = (await likePost(props.post.id)) as APIMessage;
+  emit("react:post", transformPost(payload as PostResponse));
+}
 function onSend() {}
 </script>
 
@@ -26,7 +48,7 @@ function onSend() {}
     <div class="app-post-card__content">
       <img
         v-if="props.post.media"
-        :src="props.post.media"
+        :src="`http://localhost:3000/api/posts/image/${props.post.media}`"
         :alt="props.post.text"
         class="app-bra--sm"
       />
@@ -40,7 +62,15 @@ function onSend() {}
       />
     </div>
     <div class="app-post-card__actions app-gap--nano app-pt--nano">
-      <Button prepend-icon="favorite" icon ghost @click="onLike"></Button>
+      <Button
+        prepend-icon="favorite"
+        :danger="userLiked"
+        icon
+        :ghost="!userLiked"
+        @click="onLike"
+      >
+        {{ props.post.likes.length }}
+      </Button>
       <Textfield
         v-model="commentMessage"
         :placeholder="capitalizeFirst($t('app.post-card.writeComment'))"
@@ -67,8 +97,11 @@ function onSend() {}
     width: 100%;
 
     img {
-      width: 100%;
+      min-width: fit-content;
+      max-width: 100%;
       height: auto;
+
+      object-fit: contain;
     }
   }
 

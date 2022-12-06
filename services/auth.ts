@@ -7,7 +7,7 @@ import {
 import { useUserStore } from "@/store";
 
 export async function login(user: UserPayload) {
-  const successful = await useFetch(`http://localhost:3000/api/auth/login`, {
+  const successful = await useCustomFetch(`/auth/login`, {
     method: "POST",
     body: {
       user,
@@ -40,11 +40,8 @@ export function logout() {
 }
 
 async function saveProfile() {
-  return await useFetch(`http://localhost:3000/api/profile`, {
+  return await useCustomFetch(`/profile`, {
     method: "GET",
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-    },
   })
     .then(({ data: { value } }) => {
       const { id, name, username, cpf, bio, email, picture, role } =

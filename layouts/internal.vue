@@ -2,6 +2,7 @@
 
 <template>
   <div class="app-internal-layout">
+    <div class="app-dialogs-container"></div>
     <AppHeader />
     <NuxtPage />
   </div>

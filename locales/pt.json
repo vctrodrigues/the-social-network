@@ -33,7 +33,11 @@
     "post-creator": {
       "placeholder": "O que está acontecendo?",
       "addPhoto": "adicionar foto",
-      "post": "postar"
+      "post": "postar",
+      "dialog": {
+        "title": "adicionar foto",
+        "confirm": "enviar"
+      }
     },
     "post-card": {
       "writeComment": "escreva um comentário"

@@ -1,8 +1,39 @@
+import { PostRequest } from "@/types/post.types";
+
 export function listPosts() {
-  return useFetch(`http://localhost:3000/api/posts`, {
+  return useCustomFetch(`/posts`, {
     method: "GET",
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+  });
+}
+
+export function createPost(post: PostRequest) {
+  return useCustomFetch(`/posts`, {
+    method: "POST",
+    body: {
+      ...post,
     },
+  });
+}
+
+export function createMediaPost(post: PostRequest) {
+  const formData = new FormData();
+  formData.append("media", post.media as File);
+  formData.append("text", post.text as string);
+
+  return useCustomFetch(`/posts/media`, {
+    method: "POST",
+    body: formData,
+  });
+}
+
+export function likePost(id: string) {
+  return useCustomFetch(`/posts/${id}/like`, {
+    method: "GET",
+  });
+}
+
+export function unlikePost(id: string) {
+  return useCustomFetch(`/posts/${id}/unlike`, {
+    method: "GET",
   });
 }

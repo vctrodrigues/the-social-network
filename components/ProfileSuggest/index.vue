@@ -10,7 +10,7 @@ const { listSuggestedUsers } = useUser();
 onMounted(() => {
   setTimeout(() => {
     loadUsers();
-  }, 10);
+  }, 100);
 });
 
 async function loadUsers() {

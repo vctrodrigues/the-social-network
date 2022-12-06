@@ -32,3 +32,8 @@ export type PostResponse = {
   updated_at?: string;
   deleted_at?: string;
 };
+
+export type PostRequest = {
+  text?: string;
+  media?: File;
+};

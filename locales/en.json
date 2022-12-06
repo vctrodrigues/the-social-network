@@ -34,7 +34,11 @@
     "post-creator": {
       "placeholder": "what's happening?",
       "addPhoto": "add photo",
-      "post": "post"
+      "post": "post",
+      "dialog": {
+        "title": "add photo",
+        "confirm": "send"
+      }
     },
     "post-card": {
       "writeComment": "write a comment"

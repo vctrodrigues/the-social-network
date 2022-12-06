@@ -7,14 +7,36 @@ const { listFeed } = usePost();
 
 onMounted(() => {
   setTimeout(async () => {
-    posts.value = await listFeed();
+    reloadFeed();
   }, 100);
 });
+
+async function reloadFeed() {
+  posts.value = await listFeed();
+}
+
+async function onPostCreated() {
+  reloadFeed();
+}
+
+async function onPostLiked(post: Post) {
+  posts.value?.forEach((_post) => {
+    if (_post.id === post.id) {
+      _post.likes = post.likes;
+    }
+  });
+}
 </script>
 
 <template>
   <div class="app-feed app-gap--nano">
-    <PostCard v-for="post in posts" :key="post.id" :post="post" />
+    <PostCreator @create:post="onPostCreated" />
+    <PostCard
+      v-for="post in posts"
+      :key="post.id"
+      :post="post"
+      @react:post="onPostLiked"
+    />
   </div>
 </template>
 

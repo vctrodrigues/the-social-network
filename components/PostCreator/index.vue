@@ -1,9 +1,37 @@
 <script lang="ts" setup>
-import { Avatar, Button, Textfield } from "@cleancloud/design-system";
+import {
+  Avatar,
+  Button,
+  Dialog,
+  FileInput,
+  Textfield,
+} from "@cleancloud/design-system";
+
+import { Post } from "@/types/post.types";
 
 const postContent = ref<string>("");
+const activeDrop = ref<boolean>(false);
+const media = ref<File[]>([]);
 
 const { capitalizeFirst } = useCapitalize();
+
+const emit = defineEmits<{
+  (e: "create:post", v: Post): void;
+}>();
+
+async function onCreatePost() {
+  const { addPost } = usePost();
+
+  const post = await addPost({
+    text: postContent.value,
+    media: media.value[0],
+  });
+
+  if (post) {
+    emit("create:post", post as Post);
+    postContent.value = "";
+  }
+}
 </script>
 
 <template>
@@ -15,10 +43,24 @@ const { capitalizeFirst } = useCapitalize();
       v-model="postContent"
       :placeholder="capitalizeFirst($t('app.post-creator.placeholder'))"
     />
-    <Button secondary>
-      {{ capitalizeFirst($t("app.post-creator.addPhoto")) }}
-    </Button>
-    <Button>{{ capitalizeFirst($t("app.post-creator.post")) }}</Button>
+    <Dialog
+      v-model="activeDrop"
+      :title="capitalizeFirst($t('app.post-creator.dialog.title'))"
+      :width="600"
+      :confirm="capitalizeFirst($t('app.post-creator.dialog.confirm'))"
+      activator
+      persist
+      @confirm="onCreatePost"
+    >
+      <template #activator-text>
+        {{ capitalizeFirst($t("app.post-creator.addPhoto")) }}
+      </template>
+
+      <FileInput v-model="media" />
+    </Dialog>
+    <Button @click="onCreatePost">{{
+      capitalizeFirst($t("app.post-creator.post"))
+    }}</Button>
   </div>
 </template>
 

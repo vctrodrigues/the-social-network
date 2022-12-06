@@ -9,7 +9,11 @@ export function useUser() {
   const listSuggestedUsers = async (): Promise<User[]> => {
     const users = await listUsers()
       .then((response) => {
-        return (response.data.value as UserProfileResponse[]).map(
+        if (response.error?.value) {
+          return [];
+        }
+
+        return (response as UserProfileResponse[]).map(
           ({ id, username, name, cpf, email, picture, bio, role }) => ({
             id,
             username,
