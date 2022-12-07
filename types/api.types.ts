@@ -1,8 +1,8 @@
 import { PostResponse } from "./post.types";
-import { UserProfileResponse } from "./user.types";
+import { UserProfileResponse, UserResponse } from "./user.types";
 
-export type APIMessage = {
-  payload?: UserProfileResponse[] | PostResponse[] | PostResponse;
+export type APIMessage<T> = {
+  payload: T;
   message: string;
   success: boolean;
 };

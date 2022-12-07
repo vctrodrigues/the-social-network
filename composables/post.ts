@@ -27,7 +27,7 @@ export function usePost() {
   const listFeed = async () => {
     const posts = (
       await listPosts().then((response) => {
-        return (response as APIMessage).payload as PostResponse[];
+        return (response as APIMessage<PostResponse[]>).payload;
       })
     ).map(transformPost);
 

@@ -2,9 +2,11 @@ import {
   UserPayload,
   UserProfileResponse,
   UserResponse,
+  UserSignupPayload,
 } from "@/types/user.types";
 
 import { useUserStore } from "@/store";
+import { APIMessage } from "~~/types/api.types";
 
 export async function login(user: UserPayload) {
   const successful = await useCustomFetch(`/auth/login`, {
@@ -13,9 +15,8 @@ export async function login(user: UserPayload) {
       user,
     },
   })
-    .then(({ data: { value } }) => {
-      const { access_token } = value as UserResponse;
-      localStorage.setItem("access_token", access_token);
+    .then((response: UserResponse) => {
+      localStorage.setItem("access_token", response.access_token);
 
       return true;
     })
@@ -39,13 +40,22 @@ export function logout() {
   setUser(null);
 }
 
+export function signup(payload: UserSignupPayload) {
+  return useCustomFetch(`/users/signup`, {
+    method: "POST",
+    body: payload,
+  });
+}
+
 async function saveProfile() {
   return await useCustomFetch(`/profile`, {
     method: "GET",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+    },
   })
-    .then(({ data: { value } }) => {
-      const { id, name, username, cpf, bio, email, picture, role } =
-        value as UserProfileResponse;
+    .then((response: UserProfileResponse) => {
+      const { id, name, username, cpf, bio, email, picture, role } = response;
 
       const { setUser } = useUserStore();
 
@@ -62,5 +72,8 @@ async function saveProfile() {
 
       return true;
     })
-    .catch(() => false);
+    .catch((err) => {
+      debugger;
+      return false;
+    });
 }

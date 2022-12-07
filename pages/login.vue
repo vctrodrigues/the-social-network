@@ -11,7 +11,7 @@ const email = ref<string>("");
 const password = ref<string>("");
 const active = ref<boolean>(false);
 
-const { capitalizeFirst } = useCapitalize();
+const { capitalizeFirst, capitalizeDot } = useCapitalize();
 const { login } = useAuth();
 const { t } = useI18n();
 
@@ -60,13 +60,13 @@ async function onLogin() {
 
     <Alert
       v-model="active"
-      title="Erro no login"
+      :title="capitalizeFirst($t('app.login.errorTitle'))"
       icon="error"
       :timeout="4000"
       error
       mark
     >
-      {{ $t("app.login.invalidCredentials") }}
+      {{ capitalizeDot($t("app.login.invalidCredentials")) }}
     </Alert>
   </div>
 </template>

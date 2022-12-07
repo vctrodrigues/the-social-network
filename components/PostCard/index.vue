@@ -26,13 +26,17 @@ async function onLike() {
   const { likePost, unlikePost, transformPost } = usePost();
 
   if (userLiked.value) {
-    const { payload } = (await unlikePost(props.post.id)) as APIMessage;
-    emit("react:post", transformPost(payload as PostResponse));
+    const { payload } = (await unlikePost(
+      props.post.id
+    )) as APIMessage<PostResponse>;
+    emit("react:post", transformPost(payload));
     return;
   }
 
-  const { payload } = (await likePost(props.post.id)) as APIMessage;
-  emit("react:post", transformPost(payload as PostResponse));
+  const { payload } = (await likePost(
+    props.post.id
+  )) as APIMessage<PostResponse>;
+  emit("react:post", transformPost(payload));
 }
 function onSend() {}
 </script>

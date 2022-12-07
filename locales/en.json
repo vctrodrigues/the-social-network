@@ -4,7 +4,8 @@
       "email": "email",
       "password": "password",
       "orSignup": "or #signup# now",
-      "invalidCredentials": "Your credentials are invalid. Try again.",
+      "errorTitle": "login error",
+      "invalidCredentials": "your credentials are invalid. try again.",
       "button": "login"
     },
     "signup": {
@@ -12,10 +13,12 @@
       "password": "password",
       "cpf": "cpf",
       "name": "name",
+      "username": "username",
       "passwordCheck": "repeat your password",
       "orLogin": "or #login instead",
-      "invalidCredentials": "Your credentials are invalid. Try again.",
-      "button": "signup"
+      "button": "signup",
+      "errorTitle": "error on signup.",
+      "errorOnSignup": "error while creating account. try again."
     },
     "header": {
       "search": "search everything..."

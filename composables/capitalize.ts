@@ -14,7 +14,7 @@ function capitalizeEach(value: string) {
 }
 
 function capitalizeDot(value: string) {
-  return capitalizeSignal(value, ".");
+  return capitalizeSignal(value, ". ");
 }
 
 export function useCapitalize() {

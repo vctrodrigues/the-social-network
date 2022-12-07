@@ -14,6 +14,22 @@ export type UserPayload = {
   password: string;
 };
 
+export type UserSignupPayload = {
+  name: string;
+  cpf: string;
+  email: string;
+  username: string;
+  password: string;
+};
+
+export type UserSignupResponse = {
+  id: string;
+  user: UserProfileResponse;
+  created_at: string;
+  deleted_at: string;
+  updated_at: string;
+};
+
 export type UserResponse = {
   access_token: string;
 };

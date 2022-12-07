@@ -4,7 +4,8 @@
       "email": "e-mail",
       "password": "senha",
       "orSignup": "ou #cadastre-se# agora",
-      "invalidCredentials": "Suas credenciais são inválidas. Tente novamente.",
+      "errorTitle": "erro no login",
+      "invalidCredentials": "suas credenciais são inválidas. tente novamente.",
       "button": "entrar"
     },
     "signup": {
@@ -12,9 +13,12 @@
       "password": "senha",
       "cpf": "cpf",
       "name": "nome",
+      "username": "nome de usuário",
       "passwordCheck": "repita sua senha",
       "orLogin": "ou #faça seu login",
-      "button": "cadastrar"
+      "button": "cadastrar",
+      "errorTitle": "erro no cadastro.",
+      "errorOnSignup": "erro ao criar contar. tente novamente."
     },
     "header": {
       "search": "pesquise sobre tudo..."

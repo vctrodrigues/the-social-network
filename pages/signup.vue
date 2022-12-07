@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { Button, Textfield } from "@cleancloud/design-system";
+import { userInfo } from "os";
 import { useI18n } from "vue-i18n";
 
 definePageMeta({
@@ -8,17 +9,40 @@ definePageMeta({
 });
 
 const name = ref<string>("");
+const username = ref<string>("");
 const cpf = ref<string>("");
 const email = ref<string>("");
 const password = ref<string>("");
 const passwordCheck = ref<string>("");
+const active = ref<boolean>(false);
 
-const { capitalizeFirst } = useCapitalize();
+const { capitalizeFirst, capitalizeDot } = useCapitalize();
 const { t } = useI18n();
 
 const orLogin = computed(() => {
   return t("app.signup.orLogin").split("#");
 });
+
+async function onSignup() {
+  const { signup } = useAuth();
+  if (password.value === passwordCheck.value) {
+    const success = await signup({
+      name: name.value,
+      username: username.value,
+      cpf: cpf.value,
+      email: email.value,
+      password: password.value,
+    });
+
+    if (success) {
+      useRouter().push("/");
+    } else {
+      active.value = true;
+    }
+  } else {
+    active.value = true;
+  }
+}
 </script>
 
 <template>
@@ -33,6 +57,11 @@ const orLogin = computed(() => {
       <Textfield
         v-model="name"
         :placeholder="capitalizeFirst($t('app.signup.name'))"
+        class="app-mb--nano"
+      />
+      <Textfield
+        v-model="username"
+        :placeholder="capitalizeFirst($t('app.signup.username'))"
         class="app-mb--nano"
       />
       <Textfield
@@ -55,7 +84,7 @@ const orLogin = computed(() => {
         :placeholder="capitalizeFirst($t('app.signup.passwordCheck'))"
         class="app-mb--nano"
       />
-      <Button append-icon="chevron_right">{{
+      <Button append-icon="chevron_right" @click.prevent="onSignup">{{
         capitalizeFirst($t("app.signup.button"))
       }}</Button>
     </form>
@@ -63,6 +92,17 @@ const orLogin = computed(() => {
     <Span class="app-mt--xs" body>
       {{ orLogin[0] }} <NuxtLink to="/login">{{ orLogin[1] }}</NuxtLink>
     </Span>
+
+    <Alert
+      v-model="active"
+      :title="capitalizeFirst($t('app.signup.errorTitle'))"
+      icon="error"
+      :timeout="4000"
+      error
+      mark
+    >
+      {{ capitalizeDot($t("app.signup.errorOnSignup")) }}
+    </Alert>
   </div>
 </template>
 
