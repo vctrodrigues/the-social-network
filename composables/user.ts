@@ -1,7 +1,8 @@
-import { listUsers } from "@/services";
+import { getProfile, listUsers } from "@/services";
 import { useUserStore } from "@/store";
 
 import { User, UserProfileResponse } from "@/types/user.types";
+import { APIMessage } from "@/types/api.types";
 
 export function useUser() {
   const { user } = useUserStore();
@@ -31,7 +32,13 @@ export function useUser() {
     return users.filter((_user) => user?.email !== _user.email).slice(0, 3);
   };
 
+  const getUserProfile = async (username: string) =>
+    await getProfile(username)
+      .then((response: APIMessage<UserProfileResponse>) => response.payload)
+      .catch(() => null);
+
   return {
     listSuggestedUsers,
+    getUserProfile,
   };
 }

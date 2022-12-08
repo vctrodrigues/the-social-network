@@ -1,16 +1,13 @@
 <script lang="ts" setup>
-import {
-  Avatar,
-  Button,
-  Divider,
-  H3,
-  Label,
-  Span,
-} from "@cleancloud/design-system";
+import { Avatar, Button, H3, Label, Span } from "@cleancloud/design-system";
 import { useUserStore } from "@/store";
 
 const { user } = useUserStore();
 const { capitalizeFirst } = useCapitalize();
+
+function onAccessProfile() {
+  useRouter().push(`/profile/${user?.username}`);
+}
 </script>
 
 <template>
@@ -23,28 +20,15 @@ const { capitalizeFirst } = useCapitalize();
         src="/img/cover.png"
         alt="Victor Cover"
       />
-      <Avatar image="/img/avatar.png" large />
+      <Avatar large />
       <H3 class="app-mt--micro" semibold>{{ user?.name }}</H3>
       <Label>@{{ user?.username }}</Label>
       <Span class="app-mt--xs" body>{{ user?.bio }}</Span>
     </div>
     <div
-      class="app-profile-summary__info app-bt--hairline app-bc--grey-300 app-pa--micro app-gap--micro"
-    >
-      <div class="app-profile-summary__info-column">
-        <Span semibold label>1,239</Span>
-        <Span>{{ capitalizeFirst($t("app.profile-summary.followers")) }}</Span>
-      </div>
-      <Divider vertical />
-      <div class="app-profile-summary__info-column">
-        <Span semibold label>784</Span>
-        <Span>{{ capitalizeFirst($t("app.profile-summary.following")) }}</Span>
-      </div>
-    </div>
-    <div
       class="app-profile-summary__bottom app-bt--hairline app-bc--grey-300 app-pa--micro"
     >
-      <Button ghost>
+      <Button ghost @click="onAccessProfile">
         {{ capitalizeFirst($t("app.profile-summary.my-profile")) }}
       </Button>
     </div>
@@ -72,21 +56,6 @@ const { capitalizeFirst } = useCapitalize();
       z-index: 1;
     }
   }
-
-  .app-profile-summary__info {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    width: 100%;
-    height: var(--app-sizes-lg);
-
-    .app-profile-summary__info-column {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-  }
-
   .app-profile-summary__bottom {
     display: flex;
     flex-direction: column;

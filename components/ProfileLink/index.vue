@@ -7,10 +7,14 @@ const { capitalizeFirst } = useCapitalize();
 const props = defineProps<{
   user?: User | null;
 }>();
+
+function onAccessProfile() {
+  useRouter().push(`/profile/${props.user?.username}`);
+}
 </script>
 
 <template>
-  <div class="app-profile-link">
+  <div class="app-profile-link" @click="onAccessProfile">
     <div class="app-profile-link__info app-gap--nano">
       <Avatar></Avatar>
       <div class="app-profile-link__info__column">
@@ -18,9 +22,6 @@ const props = defineProps<{
         <Span>@{{ props.user?.username }}</Span>
       </div>
     </div>
-    <Button append-icon="add" secondary small>
-      {{ capitalizeFirst($t("app.profile-link.follow")) }}
-    </Button>
   </div>
 </template>
 
@@ -29,6 +30,7 @@ const props = defineProps<{
   display: flex;
   align-items: center;
   justify-content: space-between;
+  cursor: pointer;
 
   .app-profile-link__info {
     display: flex;

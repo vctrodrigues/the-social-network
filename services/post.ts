@@ -1,4 +1,4 @@
-import { PostRequest } from "@/types/post.types";
+import { Post, PostRequest } from "@/types/post.types";
 
 export function listPosts() {
   return useCustomFetch(`/posts`, {
@@ -35,5 +35,14 @@ export function likePost(id: string) {
 export function unlikePost(id: string) {
   return useCustomFetch(`/posts/${id}/unlike`, {
     method: "GET",
+  });
+}
+
+export function addComment(post: Post, text: string) {
+  return useCustomFetch(`/posts/${post.id}/comment`, {
+    method: "POST",
+    body: {
+      text,
+    },
   });
 }

@@ -9,6 +9,7 @@ export type Comment = {
   id: string;
   user: User;
   text: string;
+  created_at?: string;
 };
 
 export type Post = {

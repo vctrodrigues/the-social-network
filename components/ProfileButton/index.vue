@@ -24,5 +24,11 @@ const { user } = useUserStore();
   &:hover {
     filter: brightness(1.1);
   }
+
+  &,
+  & * {
+    text-decoration: none;
+    color: var(--app-colors-grey900);
+  }
 }
 </style>

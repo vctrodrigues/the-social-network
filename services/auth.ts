@@ -6,13 +6,12 @@ import {
 } from "@/types/user.types";
 
 import { useUserStore } from "@/store";
-import { APIMessage } from "~~/types/api.types";
 
 export async function login(user: UserPayload) {
   const successful = await useCustomFetch(`/auth/login`, {
     method: "POST",
     body: {
-      user,
+      ...user,
     },
   })
     .then((response: UserResponse) => {

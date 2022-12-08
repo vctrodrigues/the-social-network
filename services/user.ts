@@ -3,3 +3,9 @@ export function listUsers() {
     method: "GET",
   });
 }
+
+export function getProfile(username: string) {
+  return useCustomFetch(`/users/username/${username}`, {
+    method: "GET",
+  });
+}

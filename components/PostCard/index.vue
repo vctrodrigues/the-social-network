@@ -11,6 +11,7 @@ const props = defineProps<{
 
 const { capitalizeFirst } = useCapitalize();
 const { user } = useUserStore();
+const { likePost, unlikePost, transformPost, sendComment } = usePost();
 
 const commentMessage = ref<string>("");
 
@@ -19,12 +20,10 @@ const userLiked = computed(() => {
 });
 
 const emit = defineEmits<{
-  (e: "react:post", v: Post): void;
+  (e: "react:post" | "comment:post", v: Post): void;
 }>();
 
 async function onLike() {
-  const { likePost, unlikePost, transformPost } = usePost();
-
   if (userLiked.value) {
     const { payload } = (await unlikePost(
       props.post.id
@@ -38,7 +37,20 @@ async function onLike() {
   )) as APIMessage<PostResponse>;
   emit("react:post", transformPost(payload));
 }
-function onSend() {}
+
+async function onSend() {
+  if (!commentMessage.value) {
+    return;
+  }
+
+  const post = await sendComment(props.post, commentMessage.value);
+
+  if (post) {
+    emit("comment:post", transformPost(post));
+  }
+
+  commentMessage.value = "";
+}
 </script>
 
 <template>
@@ -79,7 +91,13 @@ function onSend() {}
         v-model="commentMessage"
         :placeholder="capitalizeFirst($t('app.post-card.writeComment'))"
       />
-      <Button prepend-icon="send" icon ghost @click="onSend"></Button>
+      <Button
+        prepend-icon="send"
+        :disabled="!commentMessage"
+        icon
+        ghost
+        @click="onSend"
+      ></Button>
     </div>
   </div>
 </template>

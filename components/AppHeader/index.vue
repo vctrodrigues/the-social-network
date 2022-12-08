@@ -1,14 +1,17 @@
 <script lang="ts" setup>
-import { Button, Textfield } from "@cleancloud/design-system";
-
-const search = ref<string>("");
+import { Button } from "@cleancloud/design-system";
+import { useUserStore } from "~~/store";
 
 const { logout } = useAuth();
-const { capitalizeFirst } = useCapitalize();
+const { user } = useUserStore();
 
 function onLogout() {
   logout();
   useRouter().push("/login");
+}
+
+function onRedirectProfile() {
+  useRouter().push(`/profile/${user?.username}`);
 }
 </script>
 
@@ -17,15 +20,15 @@ function onLogout() {
     class="app-header app-py--xxxs app-px--xxl app-bg--background-50 app-bb--hairline app-bc--grey-200"
   >
     <div class="app-header__column">
-      <img class="app-header__logo" src="/img/logo.square.svg" alt="Logo TSN" />
-      <Textfield
-        v-model="search"
-        prepend-icon="search"
-        :placeholder="capitalizeFirst($t('app.header.search'))"
-      />
+      <NuxtLink to="/"
+        ><img
+          class="app-header__logo"
+          src="/img/logo.square.svg"
+          alt="Logo TSN"
+      /></NuxtLink>
     </div>
     <div class="app-header__column">
-      <ProfileButton />
+      <ProfileButton @click="onRedirectProfile" />
       <Button prepend-icon="logout" ghost icon @click="onLogout"></Button>
     </div>
   </header>
