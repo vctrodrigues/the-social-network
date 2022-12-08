@@ -1,17 +1,19 @@
 <script lang="ts" setup>
-import { Button } from "@cleancloud/design-system";
-import { useUserStore } from "~~/store";
+import { Button, Dropdown } from "@cleancloud/design-system";
+import { useUserStore } from "@/store";
 
 const { logout } = useAuth();
 const { user } = useUserStore();
 
+const router = useRouter();
+
 function onLogout() {
   logout();
-  useRouter().push("/login");
+  router.push("/login");
 }
 
 function onRedirectProfile() {
-  useRouter().push(`/profile/${user?.username}`);
+  router.push(`/profile/${user?.username}`);
 }
 </script>
 
@@ -28,6 +30,19 @@ function onRedirectProfile() {
       /></NuxtLink>
     </div>
     <div class="app-header__column">
+      <Dropdown
+        v-model="$i18n.locale"
+        :options="[
+          {
+            options: $i18n.availableLocales.map((locale) => ({
+              value: locale,
+              label: { pt: 'PT (BR)', en: 'EN (US)' }[locale],
+            })),
+          },
+        ]"
+        large
+      >
+      </Dropdown>
       <ProfileButton @click="onRedirectProfile" />
       <Button prepend-icon="logout" ghost icon @click="onLogout"></Button>
     </div>

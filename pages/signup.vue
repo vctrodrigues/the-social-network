@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { Button, Textfield } from "@cleancloud/design-system";
-import { userInfo } from "os";
 import { useI18n } from "vue-i18n";
 
 definePageMeta({
@@ -71,16 +70,19 @@ async function onSignup() {
       />
       <Textfield
         v-model="email"
+        type="email"
         :placeholder="capitalizeFirst($t('app.signup.email'))"
         class="app-mb--nano"
       />
       <Textfield
         v-model="password"
+        type="password"
         :placeholder="capitalizeFirst($t('app.signup.password'))"
         class="app-mb--nano"
       />
       <Textfield
         v-model="passwordCheck"
+        type="password"
         :placeholder="capitalizeFirst($t('app.signup.passwordCheck'))"
         class="app-mb--nano"
       />

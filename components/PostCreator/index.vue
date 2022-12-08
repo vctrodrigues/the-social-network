@@ -41,6 +41,7 @@ async function onCreatePost() {
     <Avatar></Avatar>
     <Textfield
       v-model="postContent"
+      width="60%"
       :placeholder="capitalizeFirst($t('app.post-creator.placeholder'))"
     />
     <Dialog
@@ -67,5 +68,6 @@ async function onCreatePost() {
 <style lang="scss" scoped>
 .app-post-creator {
   display: flex;
+  align-items: center;
 }
 </style>

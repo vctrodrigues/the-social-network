@@ -1,4 +1,5 @@
 import { Post, PostRequest } from "@/types/post.types";
+import { Comment } from "@/types/post.types";
 
 export function listPosts() {
   return useCustomFetch(`/posts`, {
@@ -44,5 +45,11 @@ export function addComment(post: Post, text: string) {
     body: {
       text,
     },
+  });
+}
+
+export function deleteComment(post: Post, comment: Comment) {
+  return useCustomFetch(`/posts/${post.id}/comment/${comment.id}`, {
+    method: "DELETE",
   });
 }

@@ -20,6 +20,7 @@ async function loadUsers() {
 
 <template>
   <div
+    v-if="users?.length"
     class="app-profile-suggest app-pa--xxxs app-gap--xxxs app-bg--background-50 app-ba--hairline app-bc--grey-300 app-bra--md"
   >
     <H4 semibold>

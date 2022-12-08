@@ -1,6 +1,7 @@
 import { isBefore } from "date-fns";
 import {
   addComment,
+  deleteComment,
   createMediaPost,
   createPost,
   likePost,
@@ -8,7 +9,7 @@ import {
   unlikePost,
 } from "@/services";
 
-import { Post, PostRequest, PostResponse } from "@/types/post.types";
+import { Post, PostRequest, PostResponse, Comment } from "@/types/post.types";
 import { APIMessage } from "@/types/api.types";
 
 export function usePost() {
@@ -90,6 +91,12 @@ export function usePost() {
       .catch(() => null);
   };
 
+  const removeComment = async (post: Post, comment: Comment) => {
+    return await deleteComment(post, comment)
+      .then(() => true)
+      .catch(() => false);
+  };
+
   return {
     listFeed,
     addPost,
@@ -97,5 +104,6 @@ export function usePost() {
     unlikePost,
     transformPost,
     sendComment,
+    removeComment,
   };
 }

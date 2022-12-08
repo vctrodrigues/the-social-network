@@ -45,6 +45,9 @@
     },
     "post-card": {
       "writeComment": "escreva um comentário"
+    },
+    "post-comment": {
+      "delete": "remover"
     }
   },
   "components": {
