@@ -41,6 +41,7 @@ async function onCreatePost() {
     <Avatar></Avatar>
     <Textfield
       v-model="postContent"
+      width="50%"
       :placeholder="capitalizeFirst($t('app.post-creator.placeholder'))"
     />
     <Dialog

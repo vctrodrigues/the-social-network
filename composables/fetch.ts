@@ -2,8 +2,10 @@ import { FetchOptions, ofetch } from "ofetch";
 import { useUserStore } from "@/store";
 
 export const useCustomFetch = (url: string, options?: FetchOptions) => {
+  const baseURL = useRuntimeConfig().public.baseURL;
+
   const apiFetch = ofetch.create({
-    baseURL: `http://localhost:3000/api`,
+    baseURL,
   });
 
   return apiFetch(url, {

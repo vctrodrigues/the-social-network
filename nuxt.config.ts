@@ -3,4 +3,9 @@ export default defineNuxtConfig({
   plugins: ["@/plugins/design-system.ts", "@/plugins/persistedstate.ts"],
   css: ["@cleancloud/design-system/styles.css"],
   modules: ["@pinia/nuxt"],
+  runtimeConfig: {
+    public: {
+      baseURL: process.env.BASE_URL,
+    },
+  },
 });

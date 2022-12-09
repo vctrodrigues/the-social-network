@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { Post } from "@/types/post.types";
+import { isBefore } from "date-fns";
 
 const posts = ref<Post[]>();
 
@@ -19,10 +20,20 @@ async function onPostCreated() {
   reloadFeed();
 }
 
-async function onPostLiked(post: Post) {
+function onPostLiked(post: Post) {
   posts.value?.forEach((_post) => {
     if (_post.id === post.id) {
       _post.likes = post.likes;
+    }
+  });
+}
+
+function onPostCommented(post: Post) {
+  posts.value?.forEach((_post) => {
+    if (_post.id === post.id) {
+      _post.comments = post.comments.sort((a, b) =>
+        isBefore(new Date(a.created_at), new Date(b.created_at)) ? -1 : 1
+      );
     }
   });
 }
@@ -36,6 +47,7 @@ async function onPostLiked(post: Post) {
       :key="post.id"
       :post="post"
       @react:post="onPostLiked"
+      @comment:post="onPostCommented"
     />
   </div>
 </template>

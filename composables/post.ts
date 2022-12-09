@@ -1,4 +1,6 @@
+import { isBefore } from "date-fns";
 import {
+  commentPost,
   createMediaPost,
   createPost,
   likePost,
@@ -26,8 +28,15 @@ export function usePost() {
 
   const listFeed = async () => {
     const posts = (
-      await listPosts().then((response) => {
-        return (response as APIMessage<PostResponse[]>).payload;
+      await listPosts().then((response: APIMessage<PostResponse[]>) => {
+        const posts = response.payload;
+        posts.forEach((post) => {
+          post.comments = post.comments.sort((a, b) =>
+            isBefore(new Date(a.created_at), new Date(b.created_at)) ? -1 : 1
+          );
+        });
+
+        return posts;
       })
     ).map(transformPost);
 
@@ -70,11 +79,18 @@ export function usePost() {
       .catch(() => false);
   };
 
+  const addComment = async (post: Post, text: string) => {
+    return commentPost(post, text)
+      .then((res: APIMessage<PostResponse>) => res.payload)
+      .catch(() => null);
+  };
+
   return {
     listFeed,
     addPost,
     likePost,
     unlikePost,
     transformPost,
+    addComment,
   };
 }

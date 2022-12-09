@@ -1,10 +1,7 @@
 <script lang="ts" setup>
-import { Button, Textfield } from "@cleancloud/design-system";
-
-const search = ref<string>("");
+import { Button } from "@cleancloud/design-system";
 
 const { logout } = useAuth();
-const { capitalizeFirst } = useCapitalize();
 
 function onLogout() {
   logout();
@@ -18,11 +15,6 @@ function onLogout() {
   >
     <div class="app-header__column">
       <img class="app-header__logo" src="/img/logo.square.svg" alt="Logo TSN" />
-      <Textfield
-        v-model="search"
-        prepend-icon="search"
-        :placeholder="capitalizeFirst($t('app.header.search'))"
-      />
     </div>
     <div class="app-header__column">
       <ProfileButton />

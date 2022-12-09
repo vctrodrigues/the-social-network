@@ -39,11 +39,13 @@ async function onLogin() {
     <form class="app-login-container__form">
       <Textfield
         v-model="email"
+        type="email"
         :placeholder="capitalizeFirst($t('app.login.email'))"
         class="app-mb--nano"
       />
       <Textfield
         v-model="password"
+        type="password"
         :placeholder="capitalizeFirst($t('app.login.password'))"
         class="app-mb--nano"
       />
